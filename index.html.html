@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catcher - Track Your Bus Live</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f7f8fc;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            text-transform:uppercase;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #cfc610;
+            display: flex;
+            align-items: center;
+        }
+        .logo span {
+            color: rgb(0, 0, 0);
+        }
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #cfc610;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #cfc610;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 50px 10%;
+            text-align: left;
+        }
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        .hero-text {
+            max-width: 500px;
+            padding: 20px;
+        }
+        .hero-text h1 {
+            font-size: 36px;
+            color: #cfc610;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 18px;
+            color: #666;
+            align-content: center;
+            margin-bottom: 30px;
+        }
+        .hero-text .highlight {
+            background-color: #cfc610;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .hero-image img {
+            width: 300px;
+            
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* City List Section */
+        .city-list-container {
+            max-width: 600px;
+            background: #fff;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .city-list-container h2 {
+            background-color: #cfc610;
+            padding: 10px;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .city-list {
+            list-style: none;
+            padding: 0;
+        }
+        .city-list li {
+            padding: 10px;
+            font-size: 1em;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .city-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Bus Finder Section */
+        .bus-finder {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .bus-stop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .bus-stop .bus-time {
+            font-weight: bold;
+            color: #333;
+        }
+        .map-placeholder {
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+                 /* Responsive Design */
+    @media (max-width: 768px)
+   {
+    .hero-content {
+        flex-direction: column;
+        align-items: last baseline;
+        text-align: center;
+    }
+    .hero-image
+     {
+        margin-block-end:100px;
+        margin-bottom: 200px;
+        margin-top: 100px;
+    }
+}
+
+        
+        
+    </style>
+    <script>
+        // Smooth Scroll Function
+        function smoothScroll(target) {
+            document.querySelector(target).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Toggle Section Display
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+            document.querySelector(section).style.display = 'block';
+        }
+
+        window.onload = function() {
+            showSection('.hero-section');
+        };
+    </script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="./logo.png" alt="CATCHER Logo" style="width: 65px; margin-right: 3px;">
+            <span>CATCHER</span>
+        </div>
+        <nav class="nav-links">
+            <a onclick="showSection('.hero-section'); smoothScroll('.hero-section')">Home</a>
+            <a onclick="showSection('.city-list-section'); smoothScroll('.city-list-section')">Select City</a>
+            <a onclick="showSection('.bus-finder-section'); smoothScroll('.bus-finder-section')">Find Bus</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section section">
+        <div class="hero-image">
+            <img src="./BUS.png" alt="Live Bus Tracking" />
+        </div>
+        <div class="hero-text">
+            <span class="highlight">Never Miss Your Bus Again</span>
+            <h1>Track Your Bus Live</h1>
+            <p>Take control of your daily travel by knowing the live location and arrival time of your bus. Plan exactly when to leave for the bus stop and never wait again.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- City List Section -->
+    <section class="city-list-section section" style="display: none;">
+        <div class="city-list-container">
+            <h2>Select Your City</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search city">
+            </div>
+            <ul class="city-list">
+                <li>Coimbatore</li>
+                <li>Chennai</li>
+                <li>Salem</li>
+                <li>Namakkal</li>
+                <li>Karur</li>
+                <li>Madurai</li>
+                <li>Tirunelveli</li>
+                <li>Dindigul</li>
+                <li>Trichy</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Bus Finder Section -->
+    <section class="bus-finder-section section" style="display: none;">
+        <div class="bus-finder">
+            <h2>Nearest Bus Stop</h2>
+            <div class="bus-stop">
+                <div>
+                    <h3>North Coimbatore</h3>
+                    <p>Next Buses</p>
+                </div>
+                <p>3 min</p>
+            </div>
+            <div class="bus-stop">
+                <p>SNS Via Coimbatore</p>
+                <p class="bus-time">08:41 PM</p>
+            </div>
+            <div class="bus-stop">
+                <p>45C</p>
+                <p class="bus-time">09:02 PM</p>
+            </div>
+            <div class="see-all">
+                <a href="#">See all buses</a>
+            </div>
+        </div>
+
+        <!-- Map Placeholder Section -->
+        <div class="section map-placeholder">
+            Buses around you (Map)
+        </div>
+    </section>
+
+</body>
+</html>
